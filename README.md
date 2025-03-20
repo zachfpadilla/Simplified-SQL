@@ -34,7 +34,7 @@ Records:  Red
 
 
 # Example Interactions
-An example of 2 very basic interactions with the program; showcases the following features:
+An example of a very basic interaction with the program showcasing the following features:
 - Handling invalid command syntax
 - Creating & dropping tables
 - Selecting from tables from previous sessions
@@ -43,7 +43,6 @@ An example of 2 very basic interactions with the program; showcases the followin
 - Selecting specific fields from tables with basic conditions
 - Exiting the program <br><br>
 ![demonstration](https://user-images.githubusercontent.com/73139549/235829252-822cb46e-8053-4198-bc0d-6c6ca5b8dea8.gif)
-![ezgif-3-8aaa62578d](https://github.com/RZ187/SQL-Final-README.md/assets/73139549/994f0837-d54b-4f86-9f0c-298a87d6ed44)
 
 ## Input
 ### Console Command Format
