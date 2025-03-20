@@ -1,0 +1,29 @@
+//
+// Created by Zachary Padilla on 4/18/2023.
+//
+
+#ifndef BARKESHLI_S22_TOKEN_TYPES_H
+#define BARKESHLI_S22_TOKEN_TYPES_H
+
+enum TOKEN_TYPES {
+    //Shunting Yard / RPN
+    TOKEN,
+    TOKENSTR,
+    OPERATOR,
+    RELATIONAL, LOGICAL,
+    LESSER, LESSER_EQUAL, GREATER, GREATER_EQUAL, EQUAL,
+    LPAREN, RPAREN,
+
+    //Tokenizer
+    TOKEN_NUMBER,
+    TOKEN_ALPHA,
+    TOKEN_SPACE,
+    TOKEN_OPERATOR,
+    TOKEN_PUNC,
+    TOKEN_MIXED_STRING,
+
+    TOKEN_UNKNOWN = -1,
+    TOKEN_END = -2
+};
+
+#endif //BARKESHLI_S22_TOKEN_TYPES_H
