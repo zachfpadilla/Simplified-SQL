@@ -16,6 +16,14 @@ Records:  Zachary Padilla   20    Green
           Bill Gates        69    N/A
 </pre>
 
+### View
+A view is a table created to show the user the results of a command that they ran on an existing table. For example if the table above was named "people", then the command `select "Favorite Color" from people where Age > 20` will result in the following view:
+<pre>
+Fields:   <ins>Age</ins>
+Records:  Red
+          N/A
+          
+</pre>
 
 ## Features
 - I/O via console
@@ -188,10 +196,39 @@ Table name: employee, records: 0
   - Checking for validity of conditional statements
 
 
-## Technical Overview
+## Class Overview
 ### Class Diagram
 The following is a class diagram of how each major component in the program interacts with the others.
-![Simplified SQL - Class Diagram](https://github.com/user-attachments/assets/1bb63567-4cbb-485a-baa2-f4ef1969eabe)
+![Simplified SQL - Class Diagram](https://github.com/user-attachments/assets/78483255-4348-4621-a99a-17b5330153ac)
+
+
+### Token
+<pre>
+Input:  select * from employee where Name > J
+Tokens: | select |  | * |     | from |  | employee |  | where |  | Name |    | > |      | J |
+	    ^         ^          ^           ^            ^         ^          ^          ^
+	  string   string   relational    string       string    string   relational   string
+
+</pre>
+Tokens are the result of user input being split into its constituent pieces. There are three main types of tokens: **relational** tokens, **logical** tokens, and **string** tokens. String tokens are used to define what the arguments of the input are (the fields/values & command type), while relational & logical tokens are used for the filtering needed to get the final result set.
+
+### Tokenizer
+The Tokenizer is used to divide a given string into tokens of the appropriate types. Due to the potential complexity of user commands, a state machine is used to iterate through the strings it receives character by character. Once a singular token is completed, or the end of the string is reached, the tokenizer returns it (or reports the lack thereof).
+
+### Shunting Yard
+The shunting yard algorithm is a way of converting a logical expression in infix notation into postfix notation. Once this is achieved, the expression can be evaluated simply by calculating it in order from left to right. The algorithm works by iterating through an infix expression and putting operators into a stack & everything else into a queue, pushing/popping the former once done (or in the case of parenthesis) Further reading can be found [here](https://brilliant.org/wiki/shunting-yard-algorithm/).
+
+### File Record
+File records are simply used to write/read records to/from files, with each file containing a table's worth of records. Like tokens through the Tokenizer, file records are read in one per invocation.
+
+### Parser
+The Parser recieves commands from SQL, passes them to the Tokenizer, then uses those tokens to build a multimap with the potential indexes (depending on which are present in each command) being: "command", "fields", "table_name", "where", "condition", "values", and "file_name". An adjacency matrix is used in order to tell which token means what, and therefore where in the multimap to place it.
+
+### Table
+Tables are the structures in which records are stored. The responsibilities of this class are to read/write records between tables and files, to add records to existing tables, to keep track of all tables, and to appropriately create/return new tables (views) based on specified operations (logical or relational).
+
+### SQL
+The SQL class is responsible for receiving user input and for the tables they create. When the user enters a command, it gets passed to the Parser to generate the multimap of instructions to follow. It will then execute the appropriate command with the appropriate arguments, such as dropping a table or applying a filter to one. It will then print a confirmation (or an error) to the console, and if applicable, will display some sort of result.
 
 
 ### Design Philosophy
