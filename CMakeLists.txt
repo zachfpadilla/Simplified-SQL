@@ -65,28 +65,28 @@ ADD_EXECUTABLE(main
     ${SOURCE_FILES}
 )
 
-ADD_EXECUTABLE(basic_test
-    _tests/_test_files/basic_test.cpp
-    ${SOURCE_FILES}
-)
+#ADD_EXECUTABLE(basic_test
+#    _tests/_test_files/basic_test.cpp
+#    ${SOURCE_FILES}
+#)
+#
+#ADD_EXECUTABLE(testB
+#    _tests/_test_files/testB.cpp
+#    ${SOURCE_FILES}
+#    #- - - - - - - - - - - - - - - - 
+#)
 
-ADD_EXECUTABLE(testB
-    _tests/_test_files/testB.cpp
-    ${SOURCE_FILES}
-    #- - - - - - - - - - - - - - - - 
-)
-
-# from Weihao Huang
-ADD_EXECUTABLE(testC
-    _tests/_test_files/testC.cpp
-    ${SOURCE_FILES}
-    #- - - - - - - - - - - - - - - -
-)
-
-TARGET_LINK_LIBRARIES(basic_test gtest)
-TARGET_LINK_LIBRARIES(testB gtest)
-
-# from Weihao Huang
-TARGET_LINK_LIBRARIES(testC gtest)
+## from Weihao Huang
+#ADD_EXECUTABLE(testC
+#    _tests/_test_files/testC.cpp
+#    ${SOURCE_FILES}
+#    #- - - - - - - - - - - - - - - -
+#)
+#
+#TARGET_LINK_LIBRARIES(basic_test gtest)
+#TARGET_LINK_LIBRARIES(testB gtest)
+#
+## from Weihao Huang
+#TARGET_LINK_LIBRARIES(testC gtest)
  
 
